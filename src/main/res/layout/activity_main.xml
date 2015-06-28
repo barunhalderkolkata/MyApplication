@@ -11,11 +11,11 @@
         android:textSize="45sp"
         android:id="@+id/tvDisplay"/>
     <Button
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Add One"
+        android:background="@drawable/custom"
         android:id="@+id/bAdd"/>
     <Button
         android:layout_width="250dp"

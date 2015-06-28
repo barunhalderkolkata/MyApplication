@@ -35,6 +35,36 @@ public class Data extends Activity implements View.OnClickListener{
     }
 
     /**
+     * Called when an activity you launched exits, giving you the requestCode
+     * you started it with, the resultCode it returned, and any additional
+     * data from it.  The <var>resultCode</var> will be
+     * {@link #RESULT_CANCELED} if the activity explicitly returned that,
+     * didn't return any result, or crashed during its operation.
+     * <p/>
+     * <p>You will receive this call immediately before onResume() when your
+     * activity is re-starting.
+     *
+     * @param requestCode The integer request code originally supplied to
+     *                    startActivityForResult(), allowing you to identify who this
+     *                    result came from.
+     * @param resultCode  The integer result code returned by the child activity
+     *                    through its setResult().
+     * @param data        An Intent, which can return result data to the caller
+     *                    (various data can be attached to Intent "extras").
+     * @see #startActivityForResult
+     * @see #createPendingResult
+     * @see #setResult(int)
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            Bundle basket = data.getExtras();
+            String s = basket.getString("answer");
+            gotAnswer.setText(s);
+        }
+    }
+
+    /**
      * Called when a view has been clicked.
      *
      * @param v The view that was clicked.
@@ -51,6 +81,8 @@ public class Data extends Activity implements View.OnClickListener{
                 startActivity(a);
                 break;
             case R.id.bSAFR:
+                Intent i = new Intent(Data.this, OpenedClass.class);
+                startActivityForResult(i, 0 );
                 break;
         }
     }
